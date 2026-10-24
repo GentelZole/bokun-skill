@@ -18,6 +18,20 @@ Bókun API knowledge packaged as agent skills — ready to hand to a coding agen
 
 Each folder is a standard agent skill: a `SKILL.md` with YAML frontmatter, plus `references/` and `templates/` where relevant. Drop the folders into your agent's skills directory (for example `~/.hermes/skills/third-party-integrations/`), or point the agent at the repo and let it read `SKILL.md` before touching Bókun.
 
+## First: get your API keys
+
+**[GET-BOKUN-KEYS.md](GET-BOKUN-KEYS.md)** — step-by-step: create a booking channel, then
+`Settings → Connections → API Keys` (https://extranet.bokun.io/app/settings/connections/api) → **Add**,
+and copy the **Access Key** + **Secret Key** (shown once). A ready-to-paste Arabic message for the agent
+to send its owner is included there.
+
+Keys go into the environment, never into Git:
+
+```bash
+BOKUN_ACCESS_KEY=...
+BOKUN_SECRET_KEY=...
+```
+
 ## Verified facts you can trust
 
 - Both v1 and v2 APIs use **HMAC-SHA1**. The string to sign is `date + accessKey + method + requestPath` (path only — the body is not included), base64-encoded into `X-Bokun-Signature`.
